@@ -30,14 +30,15 @@ with open(os.path.join(dirname, './afinn.csv'), 'r') as file:
        afinn[word] = value
 
 def handle_help():
-    command, emoji = random.sample(emojis.items(), 1)[0]
     irc.send(channel, 'I perform a simple sentiment analysis on your messages and respond with emojis')
 
 def analyze_message(sender, body):
     words = [''.join(y for y in x if y.isalnum()) for x in body.split(' ')]
     points = sum([afinn[word.lower()] if word.lower() in afinn else 0 for word in words])
-    if points >= 3:
+    if points >= 5:
         irc.send('emoji-bot', '(happy)')
+    elif points <= -5:
+        irc.send('emoji-bot', '(tableflip)')
 
 def handle_message(message):
     sender, type, target, body = message
