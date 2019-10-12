@@ -15,7 +15,7 @@ port = os.getenv('IRC_PORT', 6697)
 channel = os.getenv('IRC_CHANNEL', '#random')
 nick = os.getenv('IRC_NICK', 'sentiment-bot')
 user = os.getenv('IRC_USER', 'sentiment-bot')
-gecos = os.getenv('IRC_GECOS', 'Sentiment Bot v0.1.0 (github.com/AlexGustafsson/irc-sentiment-bot)')
+gecos = os.getenv('IRC_GECOS', 'Sentiment Bot v0.1.1 (github.com/AlexGustafsson/irc-sentiment-bot)')
 
 if server == None:
     print('Cannot start the bot without a given server')
