@@ -5,6 +5,7 @@ import csv
 import re
 import random
 import sys
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 from connector import IRC
 
@@ -33,11 +34,11 @@ def handle_help():
     irc.send(channel, 'I perform a simple sentiment analysis on your messages and respond with emojis')
 
 def analyze_message(sender, body):
-    words = [''.join(y for y in x if y.isalnum()) for x in body.split(' ')]
-    points = sum([afinn[word.lower()] if word.lower() in afinn else 0 for word in words])
-    if points >= 5:
+    analyzer = SentimentIntensityAnalyzer()
+    vs = analyzer.polarity_scores(body)
+    if vs["compound"] >= 0.6:
         irc.send('emoji-bot', '(happy)')
-    elif points <= -5:
+    elif vs["compound"] <= -0.6:
         irc.send('emoji-bot', '(tableflip)')
 
 def handle_message(message):
