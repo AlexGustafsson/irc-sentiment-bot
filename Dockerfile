@@ -1,8 +1,9 @@
 FROM python:3-alpine
 
-RUN mkdir -p /var/www
-COPY src /var/www/
+WORKDIR /app
+COPY src /app
+COPY requirements.txt /app
 
-RUN python -m pip install -r /var/www/requirements.txt
+RUN python -m pip install -r /app/requirements.txt
 
-CMD ["python", "/var/www/index.py"]
+CMD ["python", "/app/index.py"]
