@@ -17,7 +17,7 @@ class IRC:
         ssl_sock = socket.create_connection((server, port))
         self.sslContext = ssl.create_default_context()
         self.sock = self.sslContext.wrap_socket(ssl_sock, server_hostname=server)
-        print(self.sock.getpeercert())
+
         self.sock.send(bytes('USER {0} {0} {0} :{1}\r\n'.format(user, gecos), 'UTF-8'))
         self.sock.send(bytes('NICK {0}\r\n'.format(nick), 'UTF-8'))
 

@@ -12,7 +12,9 @@ port = os.getenv('IRC_PORT', 6697)
 channel = os.getenv('IRC_CHANNEL', '#random')
 nick = os.getenv('IRC_NICK', 'sentiment-bot')
 user = os.getenv('IRC_USER', 'sentiment-bot')
-gecos = os.getenv('IRC_GECOS', 'Sentiment Bot v0.2.0 (github.com/AlexGustafsson/irc-sentiment-bot)')
+gecos = os.getenv('IRC_GECOS', 'Sentiment Bot v0.2.1 (github.com/AlexGustafsson/irc-sentiment-bot)')
+
+lastMessageValence = None
 
 if server is None:
     print('Cannot start the bot without a given server')
@@ -24,20 +26,32 @@ def handle_help():
 
 
 def analyze_message(sender, body):
+    global lastMessageValence
+
     analyzer = SentimentIntensityAnalyzer()
     vs = analyzer.polarity_scores(body)
     if vs["compound"] >= 0.6:
         irc.send('emoji-bot', '(happy)')
+        lastMessageValence = vs
     elif vs["compound"] <= -0.6:
         irc.send('emoji-bot', '(tableflip)')
+        lastMessageValence = vs
+
+
+def handle_debug():
+    if lastMessageValence is not None:
+        compound = 'compound: {}'.format(lastMessageValence['compound'])
+        debug = ', '.join(['"{}": {}'.format(text, valence) for text, valence in lastMessageValence['debug']])
+        irc.send(channel, '{}. {}'.format(compound, debug))
 
 
 def handle_message(message):
     sender, type, target, body = message
     if type == 'PRIVMSG':
-        print(body)
         if body == '{0}: help'.format(nick):
             handle_help()
+        elif body == '{0}: debug'.format(nick):
+            handle_debug()
         else:
             analyze_message(sender, body)
 
