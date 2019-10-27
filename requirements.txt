@@ -1,1 +1,1 @@
-vaderSentiment-swedish==1.0.2
+vaderSentiment-swedish==1.0.3
