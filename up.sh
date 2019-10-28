@@ -7,7 +7,7 @@ docker run \
   --env IRC_CHANNEL='#random' \
   --env IRC_NICK='sentiment-bot' \
   --env IRC_USER='sentiment-bot' \
-  --env IRC_GECOS='Sentiment Bot v0.2.2 (github.com/AlexGustafsson/irc-sentiment-bot)' \
+  --env IRC_GECOS='Sentiment Bot v0.2.3 (github.com/AlexGustafsson/irc-sentiment-bot)' \
   --name irc-sentiment-bot \
   --detach \
   --restart always \

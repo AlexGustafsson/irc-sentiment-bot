@@ -12,7 +12,7 @@ port = os.getenv('IRC_PORT', 6697)
 channel = os.getenv('IRC_CHANNEL', '#random')
 nick = os.getenv('IRC_NICK', 'sentiment-bot')
 user = os.getenv('IRC_USER', 'sentiment-bot')
-gecos = os.getenv('IRC_GECOS', 'Sentiment Bot v0.2.1 (github.com/AlexGustafsson/irc-sentiment-bot)')
+gecos = os.getenv('IRC_GECOS', 'Sentiment Bot v0.2.3 (github.com/AlexGustafsson/irc-sentiment-bot)')
 
 lastMessageValence = None
 

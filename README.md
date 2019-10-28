@@ -28,7 +28,7 @@ docker run -d \
 -e IRC_CHANNEL='#random' \
 -e IRC_NICK='sentiment-bot' \
 -e IRC_USER='sentiment-bot' \
--e IRC_GECOS='Sentiment Bot v0.2.2 (github.com/AlexGustafsson/irc-sentiment-bot)' \
+-e IRC_GECOS='Sentiment Bot v0.2.3 (github.com/AlexGustafsson/irc-sentiment-bot)' \
 axgn/irc-sentiment-bot
 ```
 
