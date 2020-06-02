@@ -6,37 +6,42 @@
 
 ##### Quickstart
 
-```Bash
+```shell
 # Clone the repository
 git clone https://github.com/AlexGustafsson/irc-sentiment-bot
 # Enter the directory
 cd irc-sentiment-bot
+# Run
+python3 -m bot.main --server irc.example.com
+```
+
+You can also run the container using Docker, like so:
+
+```shell
 # Build the image
-./build-docker.sh
-# Start the image
-docker run -d -e IRC_SERVER='irc.example.org' --restart always axgn/irc-sentiment-bot
+docker build -t axgn/irc-sentiment-bot:latest .
+
+# Run
+docker run axgn/irc-sentiment-bot --server irc.example.com --channel "#random"
 ```
 
 ### Documentation
 
 #### Running with Docker
 
-```Bash
-docker run -d \
--e IRC_SERVER='irc.example.org' \
--e IRC_PORT='6697' \
--e IRC_CHANNEL='#random' \
--e IRC_NICK='sentiment-bot' \
--e IRC_USER='sentiment-bot' \
--e IRC_GECOS='Sentiment Bot v0.2.3 (github.com/AlexGustafsson/irc-sentiment-bot)' \
-axgn/irc-sentiment-bot
+```shell
+docker run axgn/irc-emoji-bot --server irc.example.com --channel "#random"
 ```
+
+The image is stateless and based on Alpine and is roughly 90MB in size. While running, the container usually uses 0% of the CPU and roughly 7MB of RAM. During load it uses about 0.20% CPU and while starting about 0.4% on a single core and an unchanged amount of RAM.
+
+To prevent any unforseen events, one can therefore limit the container's resources by using the flags `--cpus=0.05` and `--memory=10MB` which should both leave some head room.
 
 #### Invoking via IRC
 
 To see help messages send `sentiment-bot: help` in the channel where the bot lives.
 
-The bot reads all messages sent in the configured channel and sends `emoji-bot: (happy)` if a certain threshold is met for positivity and `emoji-bot: (tableflip)` if a negative threshold is met.
+The bot reads all messages sent in the configured channels (or direct messages) and sends and appropriate emoji if a certain threshold is met for positivity or negativity.
 
 ### Contributing
 
@@ -46,7 +51,7 @@ Any contribution is welcome. If you're not able to code it yourself, perhaps som
 
 Clone the repository:
 ```
-git clone https://github.com/AlexGustafsson/irc-emoji-bot && cd irc-emoji-bot
+git clone https://github.com/AlexGustafsson/irc-sentiment-bot && cd irc-sentiment-bot
 ```
 
 ### Disclaimer

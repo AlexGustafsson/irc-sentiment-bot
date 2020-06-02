@@ -1,9 +1,14 @@
 FROM python:3-alpine
 
-WORKDIR /app
-COPY src /app
-COPY requirements.txt /app
+RUN addgroup -g 6697 -S irc-bot && \
+    adduser -u 6697 -S irc-bot -G irc-bot
 
-RUN python -m pip install -r /app/requirements.txt
+USER irc-bot
+WORKDIR /irc-bot
 
-CMD ["python", "/app/index.py"]
+COPY requirements.txt .
+RUN python3 -m pip install -r requirements.txt
+
+COPY . .
+
+ENTRYPOINT ["python3", "-m", "bot.main"]
