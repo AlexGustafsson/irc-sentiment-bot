@@ -1,5 +1,5 @@
 # IRC Sentiment Bot
-### A Dockerized IRC Bot written in Python 3 for performing sentiment analysis and responding with emojis via emoji-bot
+### A Dockerized IRC Bot written in Python 3 for performing sentiment analysis and responding with ASCII emojis
 ***
 
 ### Setting up
