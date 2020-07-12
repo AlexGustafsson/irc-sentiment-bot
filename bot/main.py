@@ -31,8 +31,12 @@ negatives = [
 
 def main() -> None:
     """Main entrypoint of the bot."""
-    # Log at INFO level or higher
-    logging.basicConfig(level=logging.INFO)
+    # Configure the default logging format
+    logging.basicConfig(
+        format="[%(asctime)s] [%(levelname)-5s] %(message)s",
+        level=logging.INFO,
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
 
     # Create an argument parser for parsing CLI arguments
     parser = ArgumentParser(description="An IRC bot providing sentiment analysis and reactions using ASCII emojis")
