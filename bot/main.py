@@ -51,7 +51,7 @@ def main() -> None:
     # Add optional parameters for authentication etc.
     parser.add_argument("-u", "--user", default="sentiment-bot", help="Username to use when connecting to the IRC server")
     parser.add_argument("-n", "--nick", default="sentiment-bot", help="Nick to use when connecting to the IRC server")
-    parser.add_argument("-g", "--gecos", default="Sentiment Bot v1.0.1 (github.com/AlexGustafsson/irc-sentiment-bot)")
+    parser.add_argument("-g", "--gecos", default="Sentiment Bot v1.0.2 (github.com/AlexGustafsson/irc-sentiment-bot)")
     parser.add_argument("-c", "--channel", required=True, action='append', help="Channel to join. May be used more than once")
 
     # Parse the arguments
